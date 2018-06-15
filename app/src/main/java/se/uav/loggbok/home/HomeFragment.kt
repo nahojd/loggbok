@@ -19,6 +19,12 @@ class HomeFragment : Fragment() {
 
     private lateinit var tripViewModel: TripViewModel
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        tripViewModel = ViewModelProviders.of(activity!!).get(TripViewModel::class.java)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_home, container, false)
 
@@ -27,7 +33,7 @@ class HomeFragment : Fragment() {
         val stopButton = rootView.findViewById<Button>(R.id.stop_button)
         val textTimeElapsed = rootView.findViewById<TextView>(R.id.text_time_elapsed)
 
-        tripViewModel = ViewModelProviders.of(activity!!).get(TripViewModel::class.java)
+
 
         tripViewModel.elapsedTime.observe(activity!!, Observer {
             if (it != null)

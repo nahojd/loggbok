@@ -7,9 +7,10 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import se.uav.loggbok.home.HomeFragment
+import se.uav.loggbok.log.LogFragment
+import se.uav.loggbok.model.Trip
 
-class MainActivity : AppCompatActivity() {
-
+class MainActivity : AppCompatActivity(), LogFragment.OnListFragmentInteractionListener {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
@@ -18,7 +19,8 @@ class MainActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_log -> {
-                Toast.makeText(this, R.string.not_implemented, Toast.LENGTH_SHORT).show()
+                val logFragment = LogFragment.newInstance(1)
+                openFragment(logFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_settings -> {
@@ -44,5 +46,9 @@ class MainActivity : AppCompatActivity() {
 
         val homeFragment = HomeFragment.newInstance()
         openFragment(homeFragment)
+    }
+
+    override fun onTripInteraction(trip: Trip?) {
+        //Eventually we will show a detail view for a Trip here.
     }
 }

@@ -5,8 +5,6 @@ import java.time.LocalDateTime
 
 data class Trip(
         val startTime: LocalDateTime,
-        var endTime: LocalDateTime?,
-        val startPosition: Location,
-        var endPosition: Location?) {
-
-}
+        val endTime: LocalDateTime,
+        val name: String
+)
