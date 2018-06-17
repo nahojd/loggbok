@@ -1,6 +1,6 @@
 package se.uav.loggbok.log
 
-import android.arch.lifecycle.ViewModelProviders
+
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -10,9 +10,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import org.koin.android.architecture.ext.sharedViewModel
 import se.uav.loggbok.R
-
-
 import se.uav.loggbok.model.Trip
 import se.uav.loggbok.model.TripViewModel
 
@@ -23,7 +22,7 @@ import se.uav.loggbok.model.TripViewModel
  */
 class LogFragment : Fragment() {
 
-    private lateinit var tripViewModel: TripViewModel
+    private val tripViewModel by sharedViewModel<TripViewModel>()
     // TODO: Customize parameters
     private var columnCount = 1
 
@@ -35,8 +34,6 @@ class LogFragment : Fragment() {
         arguments?.let {
             columnCount = it.getInt(ARG_COLUMN_COUNT)
         }
-
-        tripViewModel = ViewModelProviders.of(activity!!).get(TripViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

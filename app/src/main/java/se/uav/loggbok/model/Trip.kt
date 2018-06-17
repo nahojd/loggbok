@@ -1,6 +1,5 @@
 package se.uav.loggbok.model
 
-import android.location.Location
 import java.time.LocalDateTime
 
 data class Trip(
